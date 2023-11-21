@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4a0b402339cac6f4e8ef25aea4e0d2e8
+guid: 076a1c5fb5b003f4da87cb7aab9f7839
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -90,6 +90,30 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -105,7 +129,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: S_Walk2_0
+      name: U_Walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3699c8340fe83b644b14e6afd61ce350
-      internalID: -781576226
+      spriteID: 703fcb129dbd4ff4287e7f02708ee729
+      internalID: -1090765377
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_Walk2_1
+      name: U_Walk_1
       rect:
         serializedVersion: 2
         x: 48
@@ -140,14 +164,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfaa9140ab2784b4a8a75233fb26e5fd
-      internalID: 1873885552
+      spriteID: ac88a9d118d36b642befdbba99442965
+      internalID: 821762760
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_Walk2_2
+      name: U_Walk_2
       rect:
         serializedVersion: 2
         x: 96
@@ -161,14 +185,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ac1e2d837f3fa141983d59d311ab77a
-      internalID: -576583754
+      spriteID: 676e0f26c4ce6084fac70a03ba4019a6
+      internalID: -1564968118
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_Walk2_3
+      name: U_Walk_3
       rect:
         serializedVersion: 2
         x: 144
@@ -182,14 +206,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39e0a192d345c2642af18a2a471d1943
-      internalID: 229582100
+      spriteID: 3240ed7d2900df245aa64a3881a3a0bd
+      internalID: 1124643452
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_Walk2_4
+      name: U_Walk_4
       rect:
         serializedVersion: 2
         x: 192
@@ -203,14 +227,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8afef096351f524abfe537d4bec14a1
-      internalID: -1185423674
+      spriteID: 8afd11eedbfaf0c4486b054e7575e2a8
+      internalID: 1419645926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_Walk2_5
+      name: U_Walk_5
       rect:
         serializedVersion: 2
         x: 240
@@ -224,8 +248,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 202d8a439d97ce94faf779fc91d65711
-      internalID: 1841148465
+      spriteID: 3e1e7a725f9d07c42bab99f0d2154754
+      internalID: -1819009867
       vertices: []
       indices: 
       edges: []
@@ -241,12 +265,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      S_Walk2_0: -781576226
-      S_Walk2_1: 1873885552
-      S_Walk2_2: -576583754
-      S_Walk2_3: 229582100
-      S_Walk2_4: -1185423674
-      S_Walk2_5: 1841148465
+      U_Walk_0: -1090765377
+      U_Walk_1: 821762760
+      U_Walk_2: -1564968118
+      U_Walk_3: 1124643452
+      U_Walk_4: 1419645926
+      U_Walk_5: -1819009867
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
