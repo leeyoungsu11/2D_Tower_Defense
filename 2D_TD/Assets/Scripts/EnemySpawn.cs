@@ -12,24 +12,74 @@ public class EnemySpawn : MonoBehaviour
     여기서 wayPoints를 넣어주어야한다.
     */
     [SerializeField]
-    private GameObject enemyPrefab;
-    [SerializeField]
-    private float spawnTime;
+    private GameObject[] enemyPrefab;
+    
     [SerializeField]
     private Transform[] wayPoints;
 
+    public GameManager gameManager;
+
     private void Awake()
     {
-        StartCoroutine("SpawnEnemy");
+        StartCoroutine(SpawnEnemy());
     }
     private IEnumerator SpawnEnemy()
     {
-        while(true)
+        //while(Wave < 4)
         {
-            GameObject clone = Instantiate(enemyPrefab);
-            Enemy enemy = clone.GetComponent<Enemy>();
-            enemy.Setup(wayPoints);
-            yield return new WaitForSeconds(spawnTime);
+            for (int i = 0; i < 5; i++)
+            {
+                GameObject clone = Instantiate(enemyPrefab[0]);
+                Enemy enemy = clone.GetComponent<Enemy>();
+                enemy.Setup(wayPoints);
+                yield return new WaitForSeconds(1);
+            }
+            gameManager.GetComponent<GameManager>().WaveUp();
+
+            yield return new WaitForSeconds(5);
+
+            for (int i = 0; i < 8; i++)
+            {
+                GameObject clone = Instantiate(enemyPrefab[0]);
+                Enemy enemy = clone.GetComponent<Enemy>();
+                enemy.Setup(wayPoints);
+                yield return new WaitForSeconds(1);
+            }
+            gameManager.GetComponent<GameManager>().WaveUp();
+
+            yield return new WaitForSeconds(5);
+
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject clone = Instantiate(enemyPrefab[1]);
+
+                Enemy enemy = clone.GetComponent<Enemy>();
+                enemy.Setup(wayPoints);
+                yield return new WaitForSeconds(2);
+            }
+            gameManager.GetComponent<GameManager>().WaveUp();
+
+            yield return new WaitForSeconds(5);
+
+            for (int i = 0; i < 12; i++)
+            {
+                GameObject clone = Instantiate(enemyPrefab[0]);
+                Enemy enemy = clone.GetComponent<Enemy>();
+                enemy.Setup(wayPoints);
+                yield return new WaitForSeconds(1);
+            }
+            gameManager.GetComponent<GameManager>().WaveUp();
+
+            yield return new WaitForSeconds(5);
+
+            for (int i = 0; i < 5; i++)
+            {
+                GameObject clone = Instantiate(enemyPrefab[1]);
+
+                Enemy enemy = clone.GetComponent<Enemy>();
+                enemy.Setup(wayPoints);
+                yield return new WaitForSeconds(2);
+            }
         }
     }
 }

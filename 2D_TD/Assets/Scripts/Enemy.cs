@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     private Transform[] wayPoints;
     private int currentIndex = 0;
     private MoveEnemy moveEnemy;
+    GameObject gameManager;
     Animator animator;
 /*
 셋업 함수
@@ -21,6 +22,7 @@ enemy의 wayPoints에 들어온 wayPoints를 넣어준다.
     {
         moveEnemy = GetComponent<MoveEnemy>();
         animator = GetComponent<Animator>();
+
 
         wayPointCount = wayPoints.Length;
         this.wayPoints = new Transform[wayPointCount];
@@ -84,7 +86,27 @@ else일땐 마지막점에 도달 한거니까 destroy
         else
         {
             Destroy(gameObject);
+            gameManager = GameObject.Find("GameManager");
+            gameManager.GetComponent<GameManager>().Hit();
         }
 
+    }
+
+    //====================================따로 추가한 것===================
+    public float HP = 100f; // 체력
+    // 데미지를 받는 함수
+    public void TakeDamage(float damageAmount)
+    {
+        HP -= damageAmount;
+
+        if (HP <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        gameObject.SetActive(false);
     }
 }
