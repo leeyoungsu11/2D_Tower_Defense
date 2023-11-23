@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public Text Wave_T;
     private int Hp = 20;
     private int Wave = 1;
+    private int MaxWave = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +19,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Hp_T.text = $"Hp : {Hp}";
-        Wave_T.text = $"Wave : {Wave}";
+        Hp_T.text = $"{Hp}";
+        Wave_T.text = $"Wave : {Wave} / {MaxWave}";
     }
 
     public void Hit()
