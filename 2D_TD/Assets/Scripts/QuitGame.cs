@@ -6,7 +6,7 @@ public class QuitGame : MonoBehaviour
 {
     void update()
     {
-        if(Input.GetKeyUp(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
             GameExit();
         }
