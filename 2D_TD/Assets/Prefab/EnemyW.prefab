@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1821466107483104180}
   m_Layer: 0
   m_Name: EnemyW
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a57a4633620b8d4087dd5345bd6017c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 100
 --- !u!95 &1821466107483104180
 Animator:
   serializedVersion: 5
