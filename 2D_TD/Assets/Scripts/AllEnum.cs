@@ -6,3 +6,12 @@ public enum EnemyType
 
     End
 }
+public enum TowerType
+{
+    Fire,
+    Water,
+    Grass,
+    Normal,
+
+    End
+}

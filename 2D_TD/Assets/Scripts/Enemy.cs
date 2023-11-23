@@ -91,4 +91,22 @@ else일땐 마지막점에 도달 한거니까 destroy
         }
 
     }
+
+    //====================================따로 추가한 것===================
+    public float HP = 100f; // 체력
+    // 데미지를 받는 함수
+    public void TakeDamage(float damageAmount)
+    {
+        HP -= damageAmount;
+
+        if (HP <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        gameObject.SetActive(false);
+    }
 }
