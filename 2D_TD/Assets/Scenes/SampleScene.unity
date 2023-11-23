@@ -3072,6 +3072,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!4 &975749895 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7502541601001152303, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
+  m_PrefabInstance: {fileID: 7502541602985502933}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1267142554
 GameObject:
   m_ObjectHideFlags: 0
@@ -3478,6 +3483,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3810798570054435841, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 975749895}
     - target: {fileID: 7502541601001152301, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
       propertyPath: m_Name
       value: BasicTower
@@ -3488,11 +3497,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7502541601001152303, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -5.48
       objectReference: {fileID: 0}
     - target: {fileID: 7502541601001152303, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.63
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7502541601001152303, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3528,7 +3537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7502541601691126361, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}

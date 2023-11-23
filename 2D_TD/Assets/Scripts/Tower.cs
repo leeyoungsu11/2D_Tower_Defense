@@ -132,10 +132,11 @@ public class Tower : MonoBehaviour
 
     private GameObject targetEnemy; // 현재 추적 중인 적
     private List<GameObject> bulletList = new List<GameObject>(); // 생성된 총알을 담을 리스트
+    
 
     void Start()
     {
-        // 초기에 총알 프리팹을 기반으로 총알을 생성하여 타워의 자식으로 추가함
+        // 총알 프리팹을 기반으로 총알을 생성하여 타워의 자식으로 추가함
         for (int i = 0; i < maxBulletCount; i++)
         {
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
@@ -158,21 +159,22 @@ public class Tower : MonoBehaviour
 
     void FindTargetEnemy()
     {
-        GameObject[] enemies = GameObject.FindObjectsOfType<GameObject>(); // Scene에서 모든 GameObject 찾기
-        float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Enemy 태그를 가진 모든 GameObject 찾기
+    float shortestDistance = Mathf.Infinity;
+    GameObject nearestEnemy = null;
 
-        foreach (GameObject enemy in enemies)
+    foreach (GameObject enemy in enemies)
+    {
+        float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+        if (distanceToEnemy < shortestDistance && distanceToEnemy <= attackRange)
         {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance && distanceToEnemy <= attackRange)
-            {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
-            }
+            shortestDistance = distanceToEnemy;
+            nearestEnemy = enemy;
         }
+    }
 
         targetEnemy = nearestEnemy; // 가장 가까운 적을 추적 대상으로 설정
+                                    
     }
 
     void RotateTower()
