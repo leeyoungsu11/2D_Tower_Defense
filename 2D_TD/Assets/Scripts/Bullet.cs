@@ -71,10 +71,12 @@ public class Bullet : MonoBehaviour
     //}
     #endregion
 
+    #region 뉴 스크립트
     public float bulletSpeed = 10f; // 총알의 이동 속도
 
     private Transform targetEnemy; // 추적 중인 적
 
+    
     void Update()
     {
         if (targetEnemy != null)
@@ -121,4 +123,5 @@ public class Bullet : MonoBehaviour
             ResetBullet(); // 적과 충돌하면 총알을 재활용을 위해 초기화
         }
     }
+    #endregion
 }
