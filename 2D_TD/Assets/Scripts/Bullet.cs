@@ -72,9 +72,9 @@ public class Bullet : MonoBehaviour
     #endregion
 
     #region 뉴 스크립트
-    public float bulletSpeed = 10f; // 총알의 이동 속도
+    public float bulletSpeed = 100f; // 총알의 이동 속도
 
-    private Transform targetEnemy; // 추적 중인 적
+    public Transform targetEnemy; // 추적 중인 적
     
     
     void Update()
@@ -96,8 +96,6 @@ public class Bullet : MonoBehaviour
 
     void MoveBullet()
     {
-        
-
         transform.Translate(transform.up * bulletSpeed * Time.deltaTime, Space.World); // 총알 이동
     }
 

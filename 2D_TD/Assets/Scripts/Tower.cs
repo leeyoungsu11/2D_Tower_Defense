@@ -129,6 +129,7 @@ public class Tower : MonoBehaviour
     public float rotationSpeed = 5f; // 타워의 회전 속도
     public float attackRange = 100f; // 타워의 공격 범위
     public int maxBulletCount = 30; // 최대 총알 수
+    public LayerMask layerMask;
 
 
     private GameObject targetEnemy; // 현재 추적 중인 적
@@ -154,20 +155,16 @@ public class Tower : MonoBehaviour
         if (targetEnemy != null)
         {
             RotateTower(); // 적을 향해 타워 회전
-            //FireBullet(); // 총알 발사            
-            if (cor == null)
-            {
-                cor = StartCoroutine(firetime());
-            }            
+            //FireBullet(); // 총알 발사                  
         }
     }
 
     void FindTargetEnemy()
     {
+        
         // GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Enemy 태그를 가진 모든 GameObject 찾기
         float shortDistance = 4;
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, shortDistance);
-
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, shortDistance, layerMask);
 
         GameObject nearestEnemy = null;
 
@@ -178,6 +175,10 @@ public class Tower : MonoBehaviour
             {
                 shortDistance = distanceToEnemy;
                 nearestEnemy = enemy.gameObject;
+            }
+            else if (targetEnemy = null)
+            {
+                Debug.Log("");
             }
         }
 
@@ -194,12 +195,18 @@ public class Tower : MonoBehaviour
                 Quaternion lookRotation = Quaternion.LookRotation(direction);
                 Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
                 transform.rotation = Quaternion.Euler(0f, 0f, rotation.z);
-            
+            if (cor == null)
+            {
+                cor = StartCoroutine(Firetime());
+            }
         }
+
     }
 
-    IEnumerator firetime()
+    IEnumerator Firetime()
     {
+        yield return new WaitForSeconds(0.5f);
+
         foreach (GameObject bullet in bulletList)
         {
         
@@ -219,8 +226,8 @@ public class Tower : MonoBehaviour
             }            
         }
 
-        yield return new WaitForSeconds(2f);
-
+        
+        
         cor = null;
     }
         //void FireBullet()

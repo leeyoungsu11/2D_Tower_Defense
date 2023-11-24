@@ -3518,10 +3518,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2116556359, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
+      propertyPath: bulletSpeed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3810798570054435841, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
       propertyPath: firePoint
       value: 
       objectReference: {fileID: 179110425}
+    - target: {fileID: 3810798570054435841, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 7502541601001152300, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -3544,11 +3552,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7502541601001152303, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.81
+      value: -7.82
       objectReference: {fileID: 0}
     - target: {fileID: 7502541601001152303, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.81
+      value: -1.29
       objectReference: {fileID: 0}
     - target: {fileID: 7502541601001152303, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
       propertyPath: m_LocalPosition.z
