@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public Text Hp_T;
     public Text Wave_T;
     private int Hp = 20;
-    private int Wave = 1;
+    private int Wave = 0;
     private int MaxWave = 5;
     // Start is called before the first frame update
     void Start()
