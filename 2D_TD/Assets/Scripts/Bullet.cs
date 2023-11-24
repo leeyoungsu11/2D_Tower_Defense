@@ -75,7 +75,7 @@ public class Bullet : MonoBehaviour
     public float bulletSpeed = 10f; // 총알의 이동 속도
 
     private Transform targetEnemy; // 추적 중인 적
-
+    
     
     void Update()
     {
@@ -96,7 +96,9 @@ public class Bullet : MonoBehaviour
 
     void MoveBullet()
     {
-        transform.Translate(transform.forward * bulletSpeed * Time.deltaTime, Space.World); // 총알 이동
+        
+
+        transform.Translate(transform.up * bulletSpeed * Time.deltaTime, Space.World); // 총알 이동
     }
 
     bool IsBulletInView()
@@ -116,12 +118,19 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false); // 총알을 비활성화하여 재사용을 위해 풀에 반환
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
+    
+
+    private void OnTriggerEnter2D(Collider2D other )
+    {        
         if (other.CompareTag("Enemy"))
         {
+            //other.transform.GetComponent<SpriteRenderer>().color = Color.red;
+            //Debug.Log(other.gameObject.name);
             ResetBullet(); // 적과 충돌하면 총알을 재활용을 위해 초기화
         }
     }
+    
+    //총알이 먼저 한발 나가는거, 타겟 전에 다른 에너미가 있어서 맞아버리는거 수정해야함//
+
     #endregion
 }

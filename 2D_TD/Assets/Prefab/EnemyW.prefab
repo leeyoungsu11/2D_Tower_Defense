@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1821466107483104186}
   - component: {fileID: 1821466107483104187}
   - component: {fileID: 1821466107483104180}
+  - component: {fileID: -3083687558755354820}
   m_Layer: 0
   m_Name: EnemyW
   m_TagString: Enemy
@@ -135,3 +136,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!58 &-3083687558755354820
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821466107483104181}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.24

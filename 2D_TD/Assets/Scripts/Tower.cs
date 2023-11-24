@@ -127,13 +127,14 @@ public class Tower : MonoBehaviour
     public GameObject bulletPrefab; // 발사될 총알 프리팹
     public Transform firePoint; // 총알이 발사될 위치
     public float rotationSpeed = 5f; // 타워의 회전 속도
-    public float attackRange = 10f; // 타워의 공격 범위
+    public float attackRange = 100f; // 타워의 공격 범위
     public int maxBulletCount = 30; // 최대 총알 수
+
 
     private GameObject targetEnemy; // 현재 추적 중인 적
     private List<GameObject> bulletList = new List<GameObject>(); // 생성된 총알을 담을 리스트
-    
 
+    public Coroutine cor= null ;
     void Start()
     {
         // 총알 프리팹을 기반으로 총알을 생성하여 타워의 자식으로 추가함
@@ -141,9 +142,9 @@ public class Tower : MonoBehaviour
         {
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             bullet.SetActive(false); // 처음에는 모든 총알을 비활성화 상태로 설정
-            bullet.transform.SetParent(transform); // 총알을 타워의 자식으로 설정
             bulletList.Add(bullet); // 리스트에 총알 추가
         }
+        
     }
 
     void Update()
@@ -153,45 +154,55 @@ public class Tower : MonoBehaviour
         if (targetEnemy != null)
         {
             RotateTower(); // 적을 향해 타워 회전
-            FireBullet(); // 총알 발사
+            //FireBullet(); // 총알 발사            
+            if (cor == null)
+            {
+                cor = StartCoroutine(firetime());
+            }            
         }
     }
 
     void FindTargetEnemy()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Enemy 태그를 가진 모든 GameObject 찾기
-    float shortestDistance = Mathf.Infinity;
-    GameObject nearestEnemy = null;
+        // GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Enemy 태그를 가진 모든 GameObject 찾기
+        float shortDistance = 4;
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, shortDistance);
 
-    foreach (GameObject enemy in enemies)
-    {
-        float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-        if (distanceToEnemy < shortestDistance && distanceToEnemy <= attackRange)
+
+        GameObject nearestEnemy = null;
+
+        foreach (var enemy in enemies)
         {
-            shortestDistance = distanceToEnemy;
-            nearestEnemy = enemy;
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distanceToEnemy < shortDistance && distanceToEnemy <= attackRange)
+            {
+                shortDistance = distanceToEnemy;
+                nearestEnemy = enemy.gameObject;
+            }
         }
-    }
 
         targetEnemy = nearestEnemy; // 가장 가까운 적을 추적 대상으로 설정
-                                    
+
     }
 
     void RotateTower()
     {
         if (targetEnemy != null)
         {
-            Vector3 direction = targetEnemy.transform.position - transform.position;
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
-            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
-            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            
+                Vector3 direction = targetEnemy.transform.position - transform.position;
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
+                transform.rotation = Quaternion.Euler(0f, 0f, rotation.z);
+            
         }
     }
 
-    void FireBullet()
+    IEnumerator firetime()
     {
         foreach (GameObject bullet in bulletList)
         {
+        
             if (!bullet.activeInHierarchy) // 활성화되지 않은 총알을 찾아서 발사
             {
                 bullet.transform.position = firePoint.position;
@@ -203,10 +214,20 @@ public class Tower : MonoBehaviour
                 {
                     bulletScript.Seek(targetEnemy.transform); // 발사된 총알이 추적할 적 설정
                 }
-                return; // 발사 후 바로 반환
-            }
+                //return; // 발사 후 바로 반환
+                break;
+            }            
         }
-    }
 
-    #endregion
+        yield return new WaitForSeconds(2f);
+
+        cor = null;
+    }
+        //void FireBullet()
+        //{
+            
+        //}
+
+        #endregion
+    
 }
