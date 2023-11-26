@@ -96,7 +96,7 @@ public class Bullet : MonoBehaviour
 
     void MoveBullet()
     {
-        transform.Translate(transform.up * bulletSpeed * Time.deltaTime, Space.World); // ÃÑ¾Ë ÀÌµ¿
+        transform.Translate(-transform.right * bulletSpeed * Time.deltaTime, Space.World); // ÃÑ¾Ë ÀÌµ¿
     }
 
     bool IsBulletInView()

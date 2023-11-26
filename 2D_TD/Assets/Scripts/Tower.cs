@@ -124,14 +124,18 @@ public class Tower : MonoBehaviour
     #endregion
 
     #region 새로 하는거
+    public CircleCollider2D colrenge;
     public GameObject bulletPrefab; // 발사될 총알 프리팹
     public Transform firePoint; // 총알이 발사될 위치
     public float rotationSpeed = 5f; // 타워의 회전 속도
     public float attackRange = 100f; // 타워의 공격 범위
     public int maxBulletCount = 30; // 최대 총알 수
     public LayerMask layerMask;
+    Vector3 direction;
+    Quaternion lookRotation;
+    Vector3 rotation;
 
-
+    private List<GameObject> Enemys; 
     private GameObject targetEnemy; // 현재 추적 중인 적
     private List<GameObject> bulletList = new List<GameObject>(); // 생성된 총알을 담을 리스트
 
@@ -145,6 +149,8 @@ public class Tower : MonoBehaviour
             bullet.SetActive(false); // 처음에는 모든 총알을 비활성화 상태로 설정
             bulletList.Add(bullet); // 리스트에 총알 추가
         }
+
+        colrenge = GetComponent<CircleCollider2D>();
         
     }
 
@@ -161,19 +167,17 @@ public class Tower : MonoBehaviour
 
     void FindTargetEnemy()
     {
-        
-        // GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Enemy 태그를 가진 모든 GameObject 찾기
-        float shortDistance = 4;
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, shortDistance, layerMask);
+        colrenge.radius = 4;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Enemy 태그를 가진 모든 GameObject 찾기
 
         GameObject nearestEnemy = null;
 
         foreach (var enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortDistance && distanceToEnemy <= attackRange)
+            if (distanceToEnemy < colrenge.radius)
             {
-                shortDistance = distanceToEnemy;
+                //colrenge.radius = distanceToEnemy;
                 nearestEnemy = enemy.gameObject;
             }
             else if (targetEnemy = null)
@@ -190,11 +194,11 @@ public class Tower : MonoBehaviour
     {
         if (targetEnemy != null)
         {
-            
-                Vector3 direction = targetEnemy.transform.position - transform.position;
-                Quaternion lookRotation = Quaternion.LookRotation(direction);
-                Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
-                transform.rotation = Quaternion.Euler(0f, 0f, rotation.z);
+            direction = targetEnemy.transform.position - transform.position;
+            lookRotation = Quaternion.LookRotation(direction);
+            rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
+            transform.rotation = Quaternion.Euler(0f, 0f, rotation.z);
+
             if (cor == null)
             {
                 cor = StartCoroutine(Firetime());
@@ -221,27 +225,11 @@ public class Tower : MonoBehaviour
                 {
                     bulletScript.Seek(targetEnemy.transform); // 발사된 총알이 추적할 적 설정
                 }
-                //return; // 발사 후 바로 반환
                 break;
             }            
         }
-
-        
-        
         cor = null;
     }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-            Debug.Log("cc");
-        if(collision.gameObject.CompareTag("Enemy"))
-        {
-        }
-    }
-    //void FireBullet()
-    //{
-
-    //}
 
     #endregion
 

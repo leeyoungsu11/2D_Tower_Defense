@@ -970,17 +970,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tower_A
       objectReference: {fileID: 0}
+    - target: {fileID: 7502541601001152302, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
+      propertyPath: m_Radius
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7502541601001152303, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7502541601001152303, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.51
+      value: -2.12
       objectReference: {fileID: 0}
     - target: {fileID: 7502541601001152303, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.78
+      value: -0.48
       objectReference: {fileID: 0}
     - target: {fileID: 7502541601001152303, guid: 39172d39da85b3f4187fc1b6544a4631, type: 3}
       propertyPath: m_LocalPosition.z
