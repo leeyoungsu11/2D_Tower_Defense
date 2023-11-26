@@ -230,11 +230,19 @@ public class Tower : MonoBehaviour
         
         cor = null;
     }
-        //void FireBullet()
-        //{
-            
-        //}
 
-        #endregion
-    
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+            Debug.Log("cc");
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+        }
+    }
+    //void FireBullet()
+    //{
+
+    //}
+
+    #endregion
+
 }
