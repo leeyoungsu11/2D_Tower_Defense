@@ -7,6 +7,6 @@ public class ChangeScene : MonoBehaviour
 {
    public void SceneChange()
     {
-        SceneManager.LoadScene("SecondScene");
+        SceneManager.LoadScene(1);
     }
 }

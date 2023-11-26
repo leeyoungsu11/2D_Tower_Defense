@@ -4,138 +4,19 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    #region 전에 했던거
-    // //public SpriteRenderer spriteRenderer;
-    // //public Rigidbody2D Rigidbody2D;
+    [SerializeField]
+    public float attackRange = 0; // 타워의 공격 범위
 
-    // public GameObject[] towers; // 타워들의 프리팹을 저장할 배열
-    // public GameObject bulletPrefab;  // 발사할 총알 프리팹
-    // public Transform firePoint; // 총알이 발사될 위치
-    // public GameObject fireBulletPrefab;    // 불 속성 총알 프리팹
-    // public GameObject waterBulletPrefab;   // 물 속성 총알 프리팹
-    // public GameObject grassBulletPrefab;   // 풀 속성 총알 프리팹
-    // public GameObject normalBulletPrefab;  // 노말 속성 총알 프리팹
-
-    // public TowerType towertype; // 타워의 속성
-
-    // public float fireRate = 1f; // 발사 속도
-    // private float nextFireTime = 0f; // 다음 발사 시간
-    //// public float bulletSpeed = 10f;
-    // public float damage = 100f;
-
-
-    // void Start()
-    // {
-    //     //spriteRenderer.GetComponent<SpriteRenderer>();
-    //     //Rigidbody2D.GetComponent<Rigidbody2D>();
-    // }
-    // void Update()
-    // {
-    //     if (Time.time >= nextFireTime)
-    //     {
-    //         Shoot();
-    //         nextFireTime = Time.time + 1f / fireRate;
-    //     }
-    // }
-
-    // void Shoot()
-    // {
-    //     GameObject bulletPrefab = GetBulletPrefab(); // 속성에 따라 발사할 총알 프리팹 가져오기
-
-    //     if (bulletPrefab != null)
-    //     {
-
-    //         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-
-    //         //Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-    //         Bullet bulletScript = bullet.GetComponent<Bullet>();
-
-    //         if (/*bulletRb*/bulletScript != null)
-    //         {
-    //             // Enemy 태그를 가진 오브젝트를 찾음
-    //             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-    //             // 타워와 가장 가까운 적을 찾음 , 이후, 더 가까운 적을 찾으면 공격함
-    //             if (enemies.Length > 0)
-    //             {
-    //                 GameObject closestEnemy = enemies[0];
-    //                 float closestDistance = Vector2.Distance(transform.position, closestEnemy.transform.position);
-
-    //                 foreach (GameObject enemy in enemies)
-    //                 {
-    //                     float distance = Vector2.Distance(transform.position, enemy.transform.position);
-    //                     if (distance < closestDistance)
-    //                     {
-    //                         closestEnemy = enemy;
-    //                         closestDistance = distance;
-    //                     }
-    //                 }
-
-    //                 Debug.Log("가까운 적 " + closestEnemy.transform.position);
-    //                 // 총알을 closestEnemy 쪽으로 발사
-    //                 //Vector2 direction = (closestEnemy.transform.position - bullet.transform.position).normalized;
-    //                 //bulletRb.velocity = direction * bulletSpeed;
-
-    //                 //Debug.Log("속력 : " + bulletSpeed);
-    //                 //Debug.Log("방향" +direction);
-    //                 bulletScript.SetTarget(closestEnemy.transform);
-    //             }
-    //         }
-
-    //     }
-    // }
-
-    // GameObject GetBulletPrefab()
-    // {
-    //     switch (towertype)
-    //     {
-    //         case TowerType.Fire:
-    //             return fireBulletPrefab;
-    //         case TowerType.Water:
-    //             return waterBulletPrefab;
-    //         case TowerType.Grass:
-    //             return grassBulletPrefab;
-    //         case TowerType.Normal:
-    //             return normalBulletPrefab;
-    //         default:
-    //             return null;
-    //     }
-    // }
-    // public void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     if (collision.CompareTag("Enemy"))
-    //     {
-    //         Enemy enemy = collision.GetComponent<Enemy>();
-
-    //         if (enemy != null)
-    //         {
-    //             enemy.TakeDamage(damage);
-    //         }
-    //     }
-
-    //         Destroy(gameObject);
-
-
-
-    // }
-    // 얘랑 shoot함수랑 합칠수 있는지, enemy에 태그추가하기
-    //불릿 스크립트가 여기에 쓰여져버림
-
-    #endregion
-
-    #region 새로 하는거
-    public CircleCollider2D colrenge;
+    private CircleCollider2D colrenge;
     public GameObject bulletPrefab; // 발사될 총알 프리팹
     public Transform firePoint; // 총알이 발사될 위치
     public float rotationSpeed = 5f; // 타워의 회전 속도
-    public float attackRange = 100f; // 타워의 공격 범위
     public int maxBulletCount = 30; // 최대 총알 수
     public LayerMask layerMask;
     Vector3 direction;
-    Quaternion lookRotation;
-    Vector3 rotation;
+    //private int EneNum = 0;
 
-    private List<GameObject> Enemys; 
+    private List<GameObject> Enemyes;
     private GameObject targetEnemy; // 현재 추적 중인 적
     private List<GameObject> bulletList = new List<GameObject>(); // 생성된 총알을 담을 리스트
 
@@ -150,42 +31,37 @@ public class Tower : MonoBehaviour
             bulletList.Add(bullet); // 리스트에 총알 추가
         }
 
+        Enemyes = new List<GameObject>();
         colrenge = GetComponent<CircleCollider2D>();
         
     }
 
     void Update()
     {
-        FindTargetEnemy(); // 공격할 적 찾기
+        if(Enemyes.Count >= 1)
+        {
+            FindTargetEnemy(); // 공격할 적 찾기
+        }
+        
 
         if (targetEnemy != null)
         {
-            RotateTower(); // 적을 향해 타워 회전
-            //FireBullet(); // 총알 발사                  
+            RotateTower(); // 적을 향해 타워 회전        
         }
     }
 
+   
     void FindTargetEnemy()
     {
-        colrenge.radius = 4;
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Enemy 태그를 가진 모든 GameObject 찾기
+        colrenge.radius = attackRange;
 
         GameObject nearestEnemy = null;
 
-        foreach (var enemy in enemies)
+        float distanceToEnemy = Vector3.Distance(transform.position, Enemyes[0].transform.position);
+        if (distanceToEnemy < colrenge.radius)
         {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < colrenge.radius)
-            {
-                //colrenge.radius = distanceToEnemy;
-                nearestEnemy = enemy.gameObject;
-            }
-            else if (targetEnemy = null)
-            {
-                Debug.Log("");
-            }
+            nearestEnemy = Enemyes[0].gameObject;
         }
-
         targetEnemy = nearestEnemy; // 가장 가까운 적을 추적 대상으로 설정
 
     }
@@ -195,10 +71,8 @@ public class Tower : MonoBehaviour
         if (targetEnemy != null)
         {
             direction = targetEnemy.transform.position - transform.position;
-            lookRotation = Quaternion.LookRotation(direction);
-            rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
-            transform.rotation = Quaternion.Euler(0f, 0f, rotation.z);
-
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             if (cor == null)
             {
                 cor = StartCoroutine(Firetime());
@@ -209,7 +83,7 @@ public class Tower : MonoBehaviour
 
     IEnumerator Firetime()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
 
         foreach (GameObject bullet in bulletList)
         {
@@ -231,6 +105,18 @@ public class Tower : MonoBehaviour
         cor = null;
     }
 
-    #endregion
-
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            Enemyes.Add(collision.gameObject);
+        }
+    }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Enemyes.Remove(collision.gameObject);
+        }
+    }
 }
