@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Windows;
+using UnityEngine.UI;
 
 public class ChangeScene : MonoBehaviour
 {
+    public GameObject loadingScreen;
    public void GoChooseStage()
     {
-        SceneManager.LoadScene(1);
-        Debug.Log("버튼 클릭");
+        
+       SceneManager.LoadScene(1);
     }
     public void GoStage1_1()
     {
@@ -24,8 +25,10 @@ public class ChangeScene : MonoBehaviour
     {
         SceneManager.LoadScene(4);
     }
-    private void Update()
+    public void BackMainScene()
     {
-        
+        SceneManager.LoadScene(0);
     }
+
+    
 }
