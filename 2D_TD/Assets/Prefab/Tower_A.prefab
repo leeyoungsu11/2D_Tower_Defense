@@ -117,14 +117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78257adb49045c44e9d4afb239eaa2c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: 10
   bulletPrefab: {fileID: 3921447393311995516, guid: 9f7d9523a598467468d9344b9a7cb0f2, type: 3}
   firePoint: {fileID: 7502541601691126360}
   rotationSpeed: 5
-  attackRange: 10
   maxBulletCount: 30
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &533117740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +145,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7502541601001152301}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -186,11 +183,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3921447393311995517, guid: 9f7d9523a598467468d9344b9a7cb0f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.6799998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3921447393311995517, guid: 9f7d9523a598467468d9344b9a7cb0f2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.029999971
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3921447393311995517, guid: 9f7d9523a598467468d9344b9a7cb0f2, type: 3}
       propertyPath: m_LocalPosition.z

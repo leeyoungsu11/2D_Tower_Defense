@@ -85,9 +85,9 @@ else일땐 마지막점에 도달 한거니까 destroy
         }
         else
         {
-            Destroy(gameObject);
             gameManager = GameObject.Find("GameManager");
             gameManager.GetComponent<GameManager>().Hit();
+            Destroy(gameObject);
         }
 
     }

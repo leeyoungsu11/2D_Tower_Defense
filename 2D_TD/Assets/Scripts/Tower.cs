@@ -10,11 +10,9 @@ public class Tower : MonoBehaviour
     private CircleCollider2D colrenge;
     public GameObject bulletPrefab; // 발사될 총알 프리팹
     public Transform firePoint; // 총알이 발사될 위치
-    public float rotationSpeed = 5f; // 타워의 회전 속도
+    public float rotationSpeed = 10f; // 타워의 회전 속도
     public int maxBulletCount = 30; // 최대 총알 수
-    public LayerMask layerMask;
     Vector3 direction;
-    //private int EneNum = 0;
 
     private List<GameObject> Enemyes;
     private GameObject targetEnemy; // 현재 추적 중인 적
@@ -26,7 +24,7 @@ public class Tower : MonoBehaviour
         // 총알 프리팹을 기반으로 총알을 생성하여 타워의 자식으로 추가함
         for (int i = 0; i < maxBulletCount; i++)
         {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            GameObject bullet = Instantiate(bulletPrefab, new Vector3(0,0,0), firePoint.rotation);
             bullet.SetActive(false); // 처음에는 모든 총알을 비활성화 상태로 설정
             bulletList.Add(bullet); // 리스트에 총알 추가
         }
@@ -53,12 +51,13 @@ public class Tower : MonoBehaviour
    
     void FindTargetEnemy()
     {
-        colrenge.radius = attackRange;
+        //colrenge.radius = attackRange;
 
         GameObject nearestEnemy = null;
 
         float distanceToEnemy = Vector3.Distance(transform.position, Enemyes[0].transform.position);
-        if (distanceToEnemy < colrenge.radius)
+
+        if (distanceToEnemy <=  colrenge.radius+0.4f)
         {
             nearestEnemy = Enemyes[0].gameObject;
         }
@@ -100,7 +99,8 @@ public class Tower : MonoBehaviour
                     bulletScript.Seek(targetEnemy.transform); // 발사된 총알이 추적할 적 설정
                 }
                 break;
-            }            
+            }
+            
         }
         cor = null;
     }
