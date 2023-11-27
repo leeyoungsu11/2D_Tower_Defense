@@ -107,6 +107,7 @@ else일땐 마지막점에 도달 한거니까 destroy
 
     void Die()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
+        //gameObject.SetActive(false);
     }
 }
