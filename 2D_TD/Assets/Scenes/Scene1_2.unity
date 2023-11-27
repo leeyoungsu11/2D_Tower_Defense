@@ -5212,7 +5212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab:
-  - {fileID: 1942694233800986883, guid: 0af6305fcc73a8242be5a46b261e40d8, type: 3}
+  - {fileID: 7435124303868934583, guid: c9aa44f8059af6f4a8d8101c90666f26, type: 3}
   - {fileID: 1821466107483104181, guid: dd6f934bd00d6f644b5b068eb0832abc, type: 3}
   wayPoints:
   - {fileID: 2960286}
