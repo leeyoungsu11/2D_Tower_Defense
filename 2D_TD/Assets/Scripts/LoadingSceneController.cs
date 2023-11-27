@@ -6,23 +6,30 @@ using UnityEngine.SceneManagement;
 
 public class LoadingSceneController : MonoBehaviour
 {
-    static string nextScene;
+    //public static string nextScene;
+    public static int nextScene;
 
+    Scene thisscene;
     [SerializeField]
     Image progressBar;
-    public static void LoadScene(string sceneName)
-    {
-        nextScene = sceneName;
+    //public static void LoadScene(string sceneName)
+    //{
+    //    nextScene = sceneName;
+    //    SceneManager.LoadScene("LoadingScene");
+    //}
+    public static void LoadScene(int sceneName)
+    {        
+        nextScene = sceneName;        
         SceneManager.LoadScene("LoadingScene");
     }
 
     private void Start()
-    {
+    {        
         StartCoroutine(LoadSceneProcess());
     }
 
     IEnumerator LoadSceneProcess()
-    {
+    {        
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
 
@@ -46,5 +53,10 @@ public class LoadingSceneController : MonoBehaviour
                 }
             }
         }
+        
+        //SceneManager.UnloadSceneAsync("LoadingScene");
+
+        thisscene = SceneManager.GetSceneByName("LoadingScene");
+        SceneManager.UnloadSceneAsync(thisscene,UnloadSceneOptions.None);
     }
 }
