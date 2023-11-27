@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class ChangeScene : MonoBehaviour
 {
-    
+    //public string thisScene;
 
     private void Start()
     {        
@@ -37,5 +37,10 @@ public class ChangeScene : MonoBehaviour
         LoadingSceneController.LoadScene(0);
     }
 
-    
+    //public void Stop()
+    //{
+    //    thisScene = SceneManager.GetActiveScene().name;
+    //    Time.timeScale = 0f;
+        
+    //}
 }
