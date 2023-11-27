@@ -73,10 +73,16 @@ public class Bullet : MonoBehaviour
 
     #region 뉴 스크립트
     public float bulletSpeed = 100f; // 총알의 이동 속도
+    private int Attack = 0;
 
     public Transform targetEnemy; // 추적 중인 적
-    
-    
+    public Enemy enemy;
+
+    void Start()
+    {
+        enemy = GetComponent<Enemy>();
+        Attack = 5;
+    }
     void Update()
     {
         if (targetEnemy != null)
@@ -125,6 +131,8 @@ public class Bullet : MonoBehaviour
             //other.transform.GetComponent<SpriteRenderer>().color = Color.red;
             //Debug.Log(other.gameObject.name);
             ResetBullet(); // 적과 충돌하면 총알을 재활용을 위해 초기화
+            enemy = other.GetComponent<Enemy>();
+            enemy.TakeDamage(Attack);
         }
     }
     

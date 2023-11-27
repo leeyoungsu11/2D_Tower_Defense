@@ -97,6 +97,7 @@ else일땐 마지막점에 도달 한거니까 destroy
     // 데미지를 받는 함수
     public void TakeDamage(float damageAmount)
     {
+        Debug.Log("Hit");
         HP -= damageAmount;
 
         if (HP <= 0)

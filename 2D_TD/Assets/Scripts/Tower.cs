@@ -14,7 +14,7 @@ public class Tower : MonoBehaviour
     public int maxBulletCount = 30; // 최대 총알 수
     Vector3 direction;
 
-    private int Attack = 0;
+    
     private List<GameObject> Enemyes;
     private GameObject targetEnemy; // 현재 추적 중인 적
     private List<GameObject> bulletList = new List<GameObject>(); // 생성된 총알을 담을 리스트
@@ -32,7 +32,6 @@ public class Tower : MonoBehaviour
 
         Enemyes = new List<GameObject>();
         colrenge = GetComponent<CircleCollider2D>();
-        Attack = 1;
     }
 
     void Update()
