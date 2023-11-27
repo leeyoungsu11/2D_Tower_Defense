@@ -73,7 +73,7 @@ public class Bullet : MonoBehaviour
 
     #region 뉴 스크립트
     public float bulletSpeed = 100f; // 총알의 이동 속도
-    private int Attack = 0;
+    public int Attack = 0;
 
     public Transform targetEnemy; // 추적 중인 적
     public Enemy enemy;
@@ -81,7 +81,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         enemy = GetComponent<Enemy>();
-        Attack = 5;
+        //Attack = 5;
     }
     void Update()
     {

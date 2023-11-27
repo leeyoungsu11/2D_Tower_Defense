@@ -33,14 +33,26 @@ public class Tower : MonoBehaviour
         Enemyes = new List<GameObject>();
         colrenge = GetComponent<CircleCollider2D>();
     }
+    public void Setup(Vector3 vec)
+    {
+        transform.position = vec;
+        for (int i = 0; i < maxBulletCount; i++)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, new Vector3(0, 0, 0), firePoint.rotation);
+            bullet.SetActive(false); // 처음에는 모든 총알을 비활성화 상태로 설정
+            bulletList.Add(bullet); // 리스트에 총알 추가
+        }
 
+        Enemyes = new List<GameObject>();
+        colrenge = GetComponent<CircleCollider2D>();
+    }
     void Update()
     {
-        if(Enemyes.Count >= 1)
+        if (Enemyes.Count >= 1)
         {
             FindTargetEnemy(); // 공격할 적 찾기
         }
-        
+
 
         if (targetEnemy != null)
         {
@@ -50,11 +62,22 @@ public class Tower : MonoBehaviour
 
    
     void FindTargetEnemy()
-    {
-        colrenge.radius = attackRange;
+    {        
+        colrenge.radius = attackRange;                
 
         GameObject nearestEnemy = null;
 
+        if (Enemyes[0]==null)
+        {
+            Debug.Log("aaaa");
+            if (Enemyes.Count > 0)
+            {
+                Enemyes.RemoveAt(0);
+            }            
+            targetEnemy = null;
+            return;
+        }
+        
         float distanceToEnemy = Vector3.Distance(transform.position, Enemyes[0].transform.position);
 
         if (distanceToEnemy <=  colrenge.radius+0.4f)
@@ -109,7 +132,7 @@ public class Tower : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            Enemyes.Add(collision.gameObject);
+            Enemyes.Add(collision.gameObject);            
         }
     }
     void OnTriggerExit2D(Collider2D collision)
