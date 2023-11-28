@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private int Wave = 0;
     private int Gold = 0;
     private int MaxWave = 0;
+    bool isPause = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +22,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void Start()
-    {
-        //enemies = GameObject.FindGameObjectsWithTag("Enemy"); // ���ʹ�����
-    }
+    
 
     
     void Update()
