@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,9 +22,18 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Scene scene = SceneManager.GetActiveScene();
         MaxWave = 5;
         Gold = 500;
-        Hp = 20;
+        if (scene.buildIndex != 4)
+        {
+            Hp = 20;
+        }
+        else if (scene.buildIndex == 4)
+        {
+            Hp = 1;
+        }
+        
         //score = 0;
          //enemyscript = gameObject.GetComponent<Enemy>();
         
@@ -31,8 +41,17 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        Scene scene = SceneManager.GetActiveScene();
+
+        if (scene.buildIndex != 4)
+        {
+            Wave_T.text = $"Wave : {Wave} / {MaxWave}";
+        }
+        else if(scene.buildIndex == 4)
+        {
+            Wave_T.text = "Boss";
+        }
         Hp_T.text = $"{Hp}";
-        Wave_T.text = $"Wave : {Wave} / {MaxWave}";
         Gold_T.text = $"{Gold}";
         //score_T.text = $"{score}";
 

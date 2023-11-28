@@ -18,21 +18,21 @@ public class EnemySpawn : MonoBehaviour
 
     public Text Timer_Text;
     private float timer;
-    
+
     [SerializeField]
     private Transform[] wayPoints;
     [SerializeField]
     private Transform[] wayPoints2;
 
     public GameManager gameManager;
-   
-    
+
+
 
     private void Awake()
     {
         Scene scene = SceneManager.GetActiveScene();
 
-        if(scene.buildIndex == 2)
+        if (scene.buildIndex == 2)
         {
             StartCoroutine(SpawnEnemy1());
         }
@@ -40,27 +40,31 @@ public class EnemySpawn : MonoBehaviour
         {
             StartCoroutine(SpawnEnemy2());
         }
+        else if (scene.buildIndex == 4)
+        {
+            StartCoroutine(SpawnEnemy3());
+        }
     }
 
     private void Start()
     {
-       
+
         timer = 11;
-       
+
 
     }
     private void Update()
     {
         Timer_Text.text = $"{(int)timer}";
-        
-               
-        timer -=Time.deltaTime;
-        
+
+
+        timer -= Time.deltaTime;
+
         if (timer <= 1)
         {
             Timer_Text.gameObject.SetActive(false);
         }
-       
+
     }
     private IEnumerator SpawnEnemy1()
     {
@@ -120,7 +124,7 @@ public class EnemySpawn : MonoBehaviour
                 Enemy enemy = clone.GetComponent<Enemy>();
                 enemy.Setup(wayPoints2);
                 yield return new WaitForSeconds(2);
-                
+
             }
             gameManager.GetComponent<GameManager>().end();
         }
@@ -187,6 +191,23 @@ public class EnemySpawn : MonoBehaviour
 
             }
             gameManager.GetComponent<GameManager>().end();
+        }
+    }
+
+    private IEnumerator SpawnEnemy3()
+    {
+        yield return new WaitForSeconds(10);
+
+        {
+            gameManager.GetComponent<GameManager>().WaveUp();
+            for (int i = 0; i < 1; i++)
+            {
+                GameObject clone = Instantiate(enemyPrefab[0]);
+                Enemy enemy = clone.GetComponent<Enemy>();
+                enemy.Setup(wayPoints);
+                yield return new WaitForSeconds(1);
+            }
+
         }
     }
 }
