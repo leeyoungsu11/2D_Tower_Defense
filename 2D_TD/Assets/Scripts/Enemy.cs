@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,13 +12,17 @@ public class Enemy : MonoBehaviour
     private MoveEnemy moveEnemy;
     GameObject gameManager;
     Animator animator;
-/*
-셋업 함수
-스포너에서 enemy프리팹 생성후 이함수를 호출
-매개변수로 transform배열을 받는다
-이는 만들어놓은 wayPoints의 배열을 뜻한다.
-enemy의 wayPoints에 들어온 wayPoints를 넣어준다.
-*/
+
+    
+    /*
+    셋업 함수
+    스포너에서 enemy프리팹 생성후 이함수를 호출
+    매개변수로 transform배열을 받는다
+    이는 만들어놓은 wayPoints의 배열을 뜻한다.
+    enemy의 wayPoints에 들어온 wayPoints를 넣어준다.
+    */
+
+   
     public void Setup(Transform[] wayPoints)
     {
         moveEnemy = GetComponent<MoveEnemy>();
@@ -32,11 +37,13 @@ enemy의 wayPoints에 들어온 wayPoints를 넣어준다.
 
         StartCoroutine(EMove());
     }
-/*
-EMove코루틴
-나의 위치와 현재 wayPoints의 거리가 0.02*speed보다 작다면
-다음위치로 NextMove
-*/
+
+   
+    /*
+    EMove코루틴
+    나의 위치와 현재 wayPoints의 거리가 0.02*speed보다 작다면
+    다음위치로 NextMove
+    */
     private IEnumerator EMove()
     {
         NextMove();
@@ -50,15 +57,16 @@ EMove코루틴
             yield return null;
         }
     }
-/*
-NextMove
-현재의 인덱스(wayPoints)가 전체 카운트-1(0부터시작하니까)보다 작을때
-지금 인덱스 포지션으로 바꿔주고 현재인덱스 증가
-그리고 direction에 방금바꿔준 인덱스포지션(다음 이동할 포인트)에서 내 위치를 빼주고 normalized
-MoveTo실행
+    
+    /*
+    NextMove
+    현재의 인덱스(wayPoints)가 전체 카운트-1(0부터시작하니까)보다 작을때
+    지금 인덱스 포지션으로 바꿔주고 현재인덱스 증가
+    그리고 direction에 방금바꿔준 인덱스포지션(다음 이동할 포인트)에서 내 위치를 빼주고 normalized
+    MoveTo실행
 
-else일땐 마지막점에 도달 한거니까 destroy
-*/
+    else일땐 마지막점에 도달 한거니까 destroy
+    */
     private void NextMove()
     {
         if(currentIndex < wayPointCount-1)
@@ -104,12 +112,23 @@ else일땐 마지막점에 도달 한거니까 destroy
         {
             Die();
         }
+        
     }
 
-    void Die()
+    public void Die()
     {
+        
         Destroy(gameObject);
-
         //gameObject.SetActive(false);
     }
+    //public void Scoreup()
+    //{
+    //    score++;
+
+    //    if(score >= 20)
+    //    {
+    //        TextContrl.instance.showSuccess();
+    //    }
+    //}
+
 }
