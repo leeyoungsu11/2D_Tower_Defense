@@ -10,7 +10,7 @@ public class TowerPlacement : MonoBehaviour
     private bool isDragging = false; // 드래그 중인지
     private GameObject choiceTowerPrefab;  //선택된 타워 프리팹
     private GameObject game;
-    public int money = 0;
+    private int money = 0;
     bool isClick = false;
 
     void Start()
