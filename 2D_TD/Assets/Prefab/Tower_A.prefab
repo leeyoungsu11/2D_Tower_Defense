@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3810798570054435841}
   - component: {fileID: 533117740}
   - component: {fileID: -4492538396266764095}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Tower_A
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -117,7 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78257adb49045c44e9d4afb239eaa2c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 3.5
+  attackRange: 3
+  attackSpeed: 1
   bulletPrefab: {fileID: 3921447393311995516, guid: 9f7d9523a598467468d9344b9a7cb0f2, type: 3}
   firePoint: {fileID: 7502541601691126360}
   rotationSpeed: 5
@@ -136,7 +137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Towers: {fileID: 0}
   TowerPoint: []
-  money: 100
+  TowerSet: {fileID: 0}
+  UnitSet: {fileID: 0}
 --- !u!50 &-4492538396266764095
 Rigidbody2D:
   serializedVersion: 4
@@ -172,6 +174,10 @@ PrefabInstance:
     - target: {fileID: 3921447393311995516, guid: 9f7d9523a598467468d9344b9a7cb0f2, type: 3}
       propertyPath: m_Name
       value: bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 3921447393311995516, guid: 9f7d9523a598467468d9344b9a7cb0f2, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3921447393311995516, guid: 9f7d9523a598467468d9344b9a7cb0f2, type: 3}
       propertyPath: m_IsActive

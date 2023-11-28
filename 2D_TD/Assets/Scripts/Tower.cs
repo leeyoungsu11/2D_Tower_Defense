@@ -6,7 +6,7 @@ public class Tower : MonoBehaviour
 {
     [SerializeField]
     public float attackRange = 0; // 타워의 공격 범위
-
+    public float attackSpeed = 1.0f;
     private CircleCollider2D colrenge;
     public GameObject bulletPrefab; // 발사될 총알 프리팹
     public Transform firePoint; // 총알이 발사될 위치
@@ -48,6 +48,7 @@ public class Tower : MonoBehaviour
     }
     void Update()
     {
+
         if (Enemyes.Count >= 1)
         {
             FindTargetEnemy(); // 공격할 적 찾기
@@ -105,27 +106,31 @@ public class Tower : MonoBehaviour
 
     IEnumerator Firetime()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
-        foreach (GameObject bullet in bulletList)
+        while (true)
         {
-        
-            if (!bullet.activeInHierarchy) // 활성화되지 않은 총알을 찾아서 발사
+            foreach (GameObject bullet in bulletList)
             {
-                bullet.transform.position = firePoint.position;
-                bullet.transform.rotation = firePoint.rotation;
-                bullet.SetActive(true); // 총알 활성화하여 발사
 
-                Bullet bulletScript = bullet.GetComponent<Bullet>();
-                if (bulletScript != null && targetEnemy != null)
+                if (!bullet.activeInHierarchy) // 활성화되지 않은 총알을 찾아서 발사
                 {
-                    bulletScript.Seek(targetEnemy.transform); // 발사된 총알이 추적할 적 설정
+                    bullet.transform.position = firePoint.position;
+                    bullet.transform.rotation = firePoint.rotation;
+                    bullet.SetActive(true); // 총알 활성화하여 발사
+
+                    Bullet bulletScript = bullet.GetComponent<Bullet>();
+                    if (bulletScript != null && targetEnemy != null)
+                    {
+                        bulletScript.Seek(targetEnemy.transform); // 발사된 총알이 추적할 적 설정
+                    }
+                    break;
                 }
-                break;
+
             }
-            
+            yield return new WaitForSeconds(attackSpeed);
+            //cor = null;
         }
-        cor = null;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

@@ -83,6 +83,7 @@ public class EnemySpawn : MonoBehaviour
                 enemy.Setup(wayPoints2);
                 yield return new WaitForSeconds(2);
             }
+
         }
     }
 }

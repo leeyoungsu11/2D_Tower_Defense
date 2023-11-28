@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     private int Wave = 0;
     private int Gold = 0;
     private int MaxWave = 0;
-    bool isPause = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,16 +50,8 @@ public class GameManager : MonoBehaviour
         
     }
 
-    //���� �� 3�ʵڿ� �����ϴ°Ŷ�
-    //���ʹ� �� ������ Success()�Լ� �θ���
-    //������������ �������� ����
-    //�ٹа� ������ �� �ٹ̱� 
-    //�� �г� ų�� ��� ���� << �õ�
-   
-
     public void Pause()
     {
-        isPause = true;
         Time.timeScale = 0;
     }
 
