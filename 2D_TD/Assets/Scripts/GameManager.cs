@@ -7,22 +7,23 @@ public class GameManager : MonoBehaviour
 {
     public Text Hp_T;
     public Text Wave_T;
-    private int Hp = 20;
+    public Text Gold_T;
+    private int Hp = 0;
     private int Wave = 0;
-    private int MaxWave = 5;
-    bool isPause = false;
-    //public GameObject successText; 
-    //private GameObject[] enemies; // ÀûÀ» ÃßÀûÇÏ±â À§ÇÑ ¹è¿­
-    
-    private void Awake()
+    private int Gold = 0;
+    private int MaxWave = 0;
+    // Start is called before the first frame update
+    void Start()
     {
-        Time.timeScale = 1;
+        MaxWave = 5;
+        Gold = 500;
+        Hp = 20;
     }
 
 
     void Start()
     {
-        //enemies = GameObject.FindGameObjectsWithTag("Enemy"); // ¿¡³Ê¹ÌÀúÀå
+        //enemies = GameObject.FindGameObjectsWithTag("Enemy"); // ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 
     
@@ -30,10 +31,7 @@ public class GameManager : MonoBehaviour
     {
         Hp_T.text = $"{Hp}";
         Wave_T.text = $"Wave : {Wave} / {MaxWave}";
-        //if (AreAllEnemiesDead())
-        //{
-        //    ShowSuccessText();
-        //} // Á×¾ú´ÂÁö È®ÀÎÈÄ Á×À¸¸é ÅØ½ºÆ®
+        Gold_T.text = $"{Gold}";
     }
 
     public void Hit()
@@ -55,11 +53,11 @@ public class GameManager : MonoBehaviour
         
     }
 
-    //°ÔÀÓ ÇÑ 3ÃÊµÚ¿¡ ½ÃÀÛÇÏ´Â°Å¶û
-    //¿¡³Ê¹Ì ´Ù Á×À¸¸é Success()ÇÔ¼ö ºÎ¸£±â
-    //½ºÅ×ÀÌÁö¸¶´Ù µ¿ÀÏÇÑÁö º¸±â
-    //²Ù¹Ğ°Å ÀÖÀ¸¸é ´õ ²Ù¹Ì±â 
-    //ÆÁ ÆĞ³Î Å³¶§ ¸ğµÎ ²ô±â << ½Ãµµ
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 3ï¿½ÊµÚ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´Â°Å¶ï¿½
+    //ï¿½ï¿½ï¿½Ê¹ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Success()ï¿½Ô¼ï¿½ ï¿½Î¸ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //ï¿½Ù¹Ğ°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù¹Ì±ï¿½ 
+    //ï¿½ï¿½ ï¿½Ğ³ï¿½ Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ << ï¿½Ãµï¿½
    
 
     public void Pause()
@@ -69,4 +67,12 @@ public class GameManager : MonoBehaviour
     }
 
 
+    public int GetGold()
+    {
+        return Gold;
+    }
+    public void SetGold(int val)
+    {
+        this.Gold -= val;
+    }
 }

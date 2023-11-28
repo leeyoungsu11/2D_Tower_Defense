@@ -30,12 +30,12 @@ public class EnemySpawn : MonoBehaviour
         //while(Wave < 4)
         {
             gameManager.GetComponent<GameManager>().WaveUp();
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 20; i++)
             {
                 GameObject clone = Instantiate(enemyPrefab[0]);
                 Enemy enemy = clone.GetComponent<Enemy>();
                 enemy.Setup(wayPoints);
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(1);
             }
 
             yield return new WaitForSeconds(5);
