@@ -5,16 +5,17 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     [SerializeField]
-    public float attackRange = 0; // 타워의 공격 범위
-    public float attackSpeed = 1.0f;
-    private CircleCollider2D colrenge;
+    private CircleCollider2D colRange;
     public GameObject bulletPrefab; // 발사될 총알 프리팹
     public Transform firePoint; // 총알이 발사될 위치
     public float rotationSpeed = 10f; // 타워의 회전 속도
     public int maxBulletCount = 30; // 최대 총알 수
+    //public UnitSet unit; 
     Vector3 direction;
 
-    
+    private UnitSet unit;
+    private float attackSpeed = 0f;
+    private float attackRange = 0; // 타워의 공격 범위
     private List<GameObject> Enemyes;
     private GameObject targetEnemy; // 현재 추적 중인 적
     private List<GameObject> bulletList = new List<GameObject>(); // 생성된 총알을 담을 리스트
@@ -31,9 +32,13 @@ public class Tower : MonoBehaviour
         }
 
         Enemyes = new List<GameObject>();
-        colrenge = GetComponent<CircleCollider2D>();
+        colRange = GetComponent<CircleCollider2D>();
+        //unit = GetComponent<UnitSet>();
+        //attackRange = unit.ShotRange;
+        //attackSpeed = unit.ShotSpeed;
+
     }
-    public void Setup(Vector3 vec)
+    public void Setup(Vector3 vec, UnitSet unitSet)
     {
         transform.position = vec;
         for (int i = 0; i < maxBulletCount; i++)
@@ -44,10 +49,24 @@ public class Tower : MonoBehaviour
         }
 
         Enemyes = new List<GameObject>();
-        colrenge = GetComponent<CircleCollider2D>();
+        colRange = GetComponent<CircleCollider2D>();
+        unit = unitSet;
+        attackRange = unit.ShotRange;
+        attackSpeed = unit.ShotSpeed;
     }
+    public void SetUp(UnitSet unitSet)
+    {
+        unit = unitSet;
+        attackRange = unit.ShotRange;
+        attackSpeed = unit.ShotSpeed;
+    }
+
     void Update()
     {
+
+        attackRange = unit.ShotRange;
+        attackSpeed = unit.ShotSpeed;
+
 
         if (Enemyes.Count >= 1)
         {
@@ -63,8 +82,8 @@ public class Tower : MonoBehaviour
 
    
     void FindTargetEnemy()
-    {        
-        colrenge.radius = attackRange;                
+    {
+        colRange.radius = attackRange;                
 
         GameObject nearestEnemy = null;
 
@@ -81,7 +100,7 @@ public class Tower : MonoBehaviour
         
         float distanceToEnemy = Vector3.Distance(transform.position, Enemyes[0].transform.position);
 
-        if (distanceToEnemy <=  colrenge.radius+0.4f)
+        if (distanceToEnemy <= colRange.radius+0.4f)
         {
             nearestEnemy = Enemyes[0].gameObject;
         }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawn : MonoBehaviour
 {
@@ -29,8 +30,16 @@ public class EnemySpawn : MonoBehaviour
 
     private void Awake()
     {
-        
-        StartCoroutine(SpawnEnemy());
+        Scene scene = SceneManager.GetActiveScene();
+
+        if(scene.buildIndex == 2)
+        {
+            StartCoroutine(SpawnEnemy1());
+        }
+        else if (scene.buildIndex == 3)
+        {
+            StartCoroutine(SpawnEnemy2());
+        }
     }
 
     private void Start()
@@ -53,13 +62,13 @@ public class EnemySpawn : MonoBehaviour
         }
        
     }
-    private IEnumerator SpawnEnemy()
+    private IEnumerator SpawnEnemy1()
     {
         yield return new WaitForSeconds(10);
         //while(Wave < 4)
         {
             gameManager.GetComponent<GameManager>().WaveUp();
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 5; i++)
             {
                 GameObject clone = Instantiate(enemyPrefab[0]);
                 Enemy enemy = clone.GetComponent<Enemy>();
@@ -117,5 +126,67 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
-    
+    private IEnumerator SpawnEnemy2()
+    {
+        yield return new WaitForSeconds(10);
+        //while(Wave < 4)
+        {
+            gameManager.GetComponent<GameManager>().WaveUp();
+            for (int i = 0; i < 20; i++)
+            {
+                GameObject clone = Instantiate(enemyPrefab[0]);
+                Enemy enemy = clone.GetComponent<Enemy>();
+                enemy.Setup(wayPoints);
+                yield return new WaitForSeconds(1);
+            }
+
+            yield return new WaitForSeconds(3);
+
+            gameManager.GetComponent<GameManager>().WaveUp();
+            for (int i = 0; i < 30; i++)
+            {
+                GameObject clone = Instantiate(enemyPrefab[0]);
+                Enemy enemy = clone.GetComponent<Enemy>();
+                enemy.Setup(wayPoints);
+                yield return new WaitForSeconds(2);
+            }
+
+            yield return new WaitForSeconds(3);
+
+            gameManager.GetComponent<GameManager>().WaveUp();
+            for (int i = 0; i < 10; i++)
+            {
+                GameObject clone = Instantiate(enemyPrefab[1]);
+
+                Enemy enemy = clone.GetComponent<Enemy>();
+                enemy.Setup(wayPoints2);
+                yield return new WaitForSeconds(2);
+            }
+
+            yield return new WaitForSeconds(3);
+
+            gameManager.GetComponent<GameManager>().WaveUp();
+            for (int i = 0; i < 30; i++)
+            {
+                GameObject clone = Instantiate(enemyPrefab[0]);
+                Enemy enemy = clone.GetComponent<Enemy>();
+                enemy.Setup(wayPoints);
+                yield return new WaitForSeconds(2);
+            }
+
+            yield return new WaitForSeconds(3);
+
+            gameManager.GetComponent<GameManager>().WaveUp();
+            for (int i = 0; i < 15; i++)
+            {
+                GameObject clone = Instantiate(enemyPrefab[1]);
+
+                Enemy enemy = clone.GetComponent<Enemy>();
+                enemy.Setup(wayPoints2);
+                yield return new WaitForSeconds(2);
+
+            }
+            gameManager.GetComponent<GameManager>().end();
+        }
+    }
 }

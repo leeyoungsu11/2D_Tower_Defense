@@ -9,8 +9,7 @@ public class TowerPlacement : MonoBehaviour
     public GameObject[] TowerPoint;
     public GameObject TowerSet;
     public GameObject UnitSet;
-    public Button button;
-    public Canvas canvas;
+    public Tower Tower_Up;
 
     private GameObject choiceTowerPrefab;  //선택된 타워 프리팹
     private UnitSet choiceUnit;
@@ -36,14 +35,13 @@ public class TowerPlacement : MonoBehaviour
                 if (hit.collider.CompareTag("TowerGound"))
                 {
 
-                    if (money >= 100)
+                    if (money >= 200)
                     {
                         choiceTowerPrefab = hit.collider.gameObject;
                         Vector3 towerVec = choiceTowerPrefab.transform.position;
                         CreateNewTower(towerVec);
-                        game.GetComponent<GameManager>().SetGold(50); // 타워 구매 후 돈 차감
+                        game.GetComponent<GameManager>().SetGold(2); // 타워 구매 후 돈 차감
                         hit.collider.gameObject.SetActive(false);
-                        //Debug.Log(money);
                     }
                     else
                     {
@@ -52,12 +50,17 @@ public class TowerPlacement : MonoBehaviour
                 }
                 else if (hit.collider.CompareTag("Unit"))
                 {
-                    choiceUnit = hit.collider.gameObject.GetComponent<UnitSet>();
-                    Vector3 ButtonVec = choiceTowerPrefab.transform.position;
-                    //choiceUnit = GetComponent<UnitSet>();
-                    CreateNewButton(ButtonVec);
-                    //choiceUnit.Upgrade();
-                    //Debug.Log("dd");
+                    if(money >= 150)
+                    {
+                        choiceUnit = hit.collider.gameObject.GetComponent<UnitSet>();
+                        choiceUnit.GetComponent<UnitSet>().Upgrade();
+                        game.GetComponent<GameManager>().SetGold(150);
+
+                    }
+                    else
+                    {
+                        Debug.Log("돈이 부족합니다.");
+                    }
                 }
             }
             
@@ -66,20 +69,17 @@ public class TowerPlacement : MonoBehaviour
 
     void CreateNewTower(Vector3 position)  // 새로운 타워를 마우스 클릭 위치에 생성하는 함수
     {
-        GameObject newTower = Instantiate(Towers, position+Vector3.up, Quaternion.identity);
-        Tower tower = newTower.GetComponent<Tower>();
-        tower.Setup(position);
-
         GameObject newTowerSet = Instantiate(TowerSet, position + Vector3.up, Quaternion.identity);
         TowerSet towerSet = newTowerSet.GetComponent<TowerSet>();
 
         GameObject newUnitSet = Instantiate(UnitSet, position + Vector3.up, Quaternion.identity);
         UnitSet unitSet = newUnitSet.GetComponent<UnitSet>();
-    }
+        unitSet.SetUp();
 
-    void CreateNewButton(Vector3 position)
-    {
-        //Canvas newcanvas = Instantiate(canvas, position, Quaternion.identity);
-        //Button newButton = Instantiate(button, position, Quaternion.identity);
+        GameObject newTower = Instantiate(Towers, position+Vector3.up, Quaternion.identity);
+        Tower tower = newTower.GetComponent<Tower>();
+        tower.Setup(position, unitSet);
+
     }
+ 
 }

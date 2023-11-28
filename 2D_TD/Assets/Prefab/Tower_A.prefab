@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7502541601001152300}
   - component: {fileID: 7502541601001152302}
   - component: {fileID: 3810798570054435841}
-  - component: {fileID: 533117740}
   - component: {fileID: -4492538396266764095}
   m_Layer: 2
   m_Name: Tower_A
@@ -117,28 +116,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78257adb49045c44e9d4afb239eaa2c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 3
-  attackSpeed: 1
+  colRange: {fileID: 0}
   bulletPrefab: {fileID: 3921447393311995516, guid: 9f7d9523a598467468d9344b9a7cb0f2, type: 3}
   firePoint: {fileID: 7502541601691126360}
   rotationSpeed: 5
   maxBulletCount: 30
---- !u!114 &533117740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7502541601001152301}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02b6ffad5d69e69428e8fe88cd914bff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Towers: {fileID: 0}
-  TowerPoint: []
-  TowerSet: {fileID: 0}
-  UnitSet: {fileID: 0}
+  unit: {fileID: -3711323242047142163, guid: bc11fa747daa73248a886c64a3b9c1ae, type: 3}
 --- !u!50 &-4492538396266764095
 Rigidbody2D:
   serializedVersion: 4

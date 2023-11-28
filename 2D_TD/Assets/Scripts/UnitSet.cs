@@ -6,14 +6,20 @@ public class UnitSet : MonoBehaviour
 {
     SpriteRenderer sprite;
     private float Delay = 0;
+    public float ShotSpeed { get; private set; }
+    public float ShotRange { get; private set; }
+   
     //SpriteRenderer sprite;
     // Start is called before the first frame update
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-        //gameObject.SetActive(false);
     }
-
+    public void SetUp()
+    {
+        ShotSpeed = 1.0f;
+        ShotRange = 3;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -29,8 +35,9 @@ public class UnitSet : MonoBehaviour
     }
     public void Upgrade()
     {
-        Debug.Log("up");
         sprite.color = Color.red;
+        ShotSpeed = 0.2f;
+        ShotRange = 4;
     }
 
 }
