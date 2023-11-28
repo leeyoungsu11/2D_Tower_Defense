@@ -17,6 +17,8 @@ public class TextContrl : MonoBehaviour
 
     public Button ReTryButton;
 
+    public Button BackButton;
+
   
  
     private void Awake()
@@ -43,6 +45,8 @@ public class TextContrl : MonoBehaviour
         
             ReTryButton.gameObject.SetActive(false);
 
+            BackButton.gameObject.SetActive(false);
+
         
             StartCoroutine(ShowReady());
     }
@@ -50,7 +54,7 @@ public class TextContrl : MonoBehaviour
     IEnumerator ShowReady()
     {        
         int count = 0;
-        while(count < 3)
+        while(count < 10)
         {            
             readyText.SetActive(true);
             yield return new WaitForSeconds(0.5f);
@@ -82,6 +86,10 @@ public class TextContrl : MonoBehaviour
     public void ReTryBtn()
     {
         ReTryButton.gameObject.SetActive(true);
+    }
+    public void BackBtn()
+    {
+        BackButton.gameObject.SetActive(true);
     }
     
    

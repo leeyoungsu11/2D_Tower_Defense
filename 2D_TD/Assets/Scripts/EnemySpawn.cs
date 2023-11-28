@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySpawn : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class EnemySpawn : MonoBehaviour
     */
     [SerializeField]
     private GameObject[] enemyPrefab;
+
+    public Text Timer_Text;
+    private float timer;
     
     [SerializeField]
     private Transform[] wayPoints;
@@ -20,13 +24,38 @@ public class EnemySpawn : MonoBehaviour
     private Transform[] wayPoints2;
 
     public GameManager gameManager;
+   
+    
 
     private void Awake()
     {
+        
         StartCoroutine(SpawnEnemy());
+    }
+
+    private void Start()
+    {
+       
+        timer = 11;
+       
+
+    }
+    private void Update()
+    {
+        Timer_Text.text = $"{(int)timer}";
+        
+               
+        timer -=Time.deltaTime;
+        
+        if (timer <= 1)
+        {
+            Timer_Text.gameObject.SetActive(false);
+        }
+       
     }
     private IEnumerator SpawnEnemy()
     {
+        yield return new WaitForSeconds(10);
         //while(Wave < 4)
         {
             gameManager.GetComponent<GameManager>().WaveUp();
@@ -82,7 +111,11 @@ public class EnemySpawn : MonoBehaviour
                 Enemy enemy = clone.GetComponent<Enemy>();
                 enemy.Setup(wayPoints2);
                 yield return new WaitForSeconds(2);
+                
             }
+            gameManager.GetComponent<GameManager>().end();
         }
     }
+
+    
 }
