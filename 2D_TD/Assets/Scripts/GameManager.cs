@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
         {
             TextContrl.instance.ShowGameOver();
             TextContrl.instance.ReTryBtn();
+            TextContrl.instance.NextBtn();
             Pause();
             
         }
