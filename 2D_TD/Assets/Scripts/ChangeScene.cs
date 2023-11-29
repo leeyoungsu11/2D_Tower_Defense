@@ -20,15 +20,18 @@ public class ChangeScene : MonoBehaviour
     public void GoStage1_1()
     {
         //SceneManager.LoadScene(2);
+        Time.timeScale = 1;
         LoadingSceneController.LoadScene(2);
     }
     public void Gostage1_2()
     {
         //SceneManager.LoadScene(3);
+        Time.timeScale = 1;
         LoadingSceneController.LoadScene(3);
     }
     public void Gostage1_3()
     {
+        Time.timeScale = 1;
         LoadingSceneController.LoadScene(4);
     }
     public void BackMainScene()
