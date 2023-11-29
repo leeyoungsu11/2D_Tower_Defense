@@ -24,14 +24,16 @@ public class GameManager : MonoBehaviour
     {
         Scene scene = SceneManager.GetActiveScene();
         MaxWave = 5;
-        Gold = 500;
+        
         if (scene.buildIndex != 4)
         {
             Hp = 20;
+            Gold = 500;
         }
         else if (scene.buildIndex == 4)
         {
             Hp = 1;
+            Gold = 2500;
         }
         
         //score = 0;
@@ -62,6 +64,15 @@ public class GameManager : MonoBehaviour
             TextContrl.instance.NextBtn();
             TextContrl.instance.BackBtn();
             Pause();
+        }
+
+        if(Input.GetKey(KeyCode.Q))
+        {
+            Time.timeScale = 4;
+        }
+        else if(Input.GetKeyUp(KeyCode.Q))
+        {
+            Time.timeScale = 1;
         }
     }
    
@@ -111,6 +122,7 @@ public class GameManager : MonoBehaviour
     }
     public void UpGold(int val)
     {
+        //Debug.Log("c");
         this.Gold += val;
     }
     public void end()

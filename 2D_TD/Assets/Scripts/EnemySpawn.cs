@@ -162,8 +162,8 @@ public class EnemySpawn : MonoBehaviour
                     GameObject clone = Instantiate(enemyPrefab[1]);
 
                     Enemy enemy = clone.GetComponent<Enemy>();
-                    enemy.Setup(wayPoints2, 3);
-                    yield return new WaitForSeconds(2);
+                    enemy.Setup(wayPoints2, 4);
+                    yield return new WaitForSeconds(0.5f);
                 }
 
                 yield return new WaitForSeconds(3);
@@ -185,7 +185,7 @@ public class EnemySpawn : MonoBehaviour
                     GameObject clone = Instantiate(enemyPrefab[1]);
 
                     Enemy enemy = clone.GetComponent<Enemy>();
-                    enemy.Setup(wayPoints2, 3);
+                    enemy.Setup(wayPoints2, 4);
                     yield return new WaitForSeconds(1);
 
                 }
@@ -203,11 +203,12 @@ public class EnemySpawn : MonoBehaviour
                 {
                     GameObject clone = Instantiate(enemyPrefab[0]);
                     Enemy enemy = clone.GetComponent<Enemy>();
-                    enemy.Setup(wayPoints, 150);
+                    enemy.Setup(wayPoints, 100);
                     yield return new WaitForSeconds(1);
                 }
 
             }
+            gameManager.GetComponent<GameManager>().end();
         }
     
 }
