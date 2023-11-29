@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -9,17 +10,16 @@ public class GameManager : MonoBehaviour
     public Text Hp_T;
     public Text Wave_T;
     public Text Gold_T;
-   // public Text score_T;
+   
     private int Hp = 0;
     private int Wave = 0;
     private int Gold = 0;
     private int MaxWave = 0;
     public GameObject[] Obj;
-    //private int score = 0;
-    //Enemy enemyscript;
+   
     private bool isend = false;
 
-    // Start is called before the first frame update
+   
     void Start()
     {
         Scene scene = SceneManager.GetActiveScene();
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         }
         Hp_T.text = $"{Hp}";
         Gold_T.text = $"{Gold}";
-        //score_T.text = $"{score}";
+        
 
         Obj = GameObject.FindGameObjectsWithTag("Enemy");
         if (Obj.Length <= 0 && Hp != 0 && isend == true)
@@ -73,22 +73,15 @@ public class GameManager : MonoBehaviour
             TextContrl.instance.ShowGameOver();
             TextContrl.instance.ReTryBtn();
             TextContrl.instance.NextBtn();
+            TextContrl.instance.BackBtn();
             Pause();
+            
             
         }
         
     }
 
-    //public void Scoreup()
-    //{
-    //    score++;
-        
-    //    if(score >= 20)
-    //    {
-    //        TextContrl.instance.showSuccess();
-    //    }
-    //}
-
+    
     public void WaveUp()
     {
         Wave++;
@@ -103,6 +96,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    public void Resume()
+    {
+        Time.timeScale = 1;
+    }
 
     public int GetGold()
     {

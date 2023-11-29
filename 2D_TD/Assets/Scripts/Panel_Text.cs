@@ -31,10 +31,14 @@ public class Panel_Text : MonoBehaviour
     public void ShowPanel()
     {
         instructionsPanel.SetActive(true);
-        
-        AAAText.text = "1. 우측 하단의 타워를 클릭해 필드에 타워를 설치하세요.\n2.정해진 구역에만 설치할 수 있습니다.\n3. 적을 처치해서 골드를 얻고 타워를 업그레이드 하세요.\n4. HP가 0이되면 게임이 끝납니다.";
+
+        AAAText.text = "1. 정해진 위치에 클릭하여 타워를 설치하세요.\n2. 설치된 타워를 클릭하면 업그레이드를 합니다.\n3. HP가 0이되면 게임이 끝납니다.\n4. 모든 적을 처치하세요!"; 
 
 
+    }
+    public void onlyshowpanel()
+    {
+        instructionsPanel.SetActive(true);
     }
 
     public void HidePanel()

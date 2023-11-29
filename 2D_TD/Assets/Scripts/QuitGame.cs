@@ -1,19 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class QuitGame : MonoBehaviour
 {
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            GameExit();
-        }
-    }
+    //    void Update()
+    //    {
+    //        if(Input.GetKeyDown(KeyCode.Escape))
+    //        {
+    //            GameExit();
+    //        }
+    //    }
 
-    public void GameExit()
+    //    public void GameExit()
+    //    {
+    //#if UNITY_EDITOR
+    //        UnityEditor.EditorApplication.isPlaying = false;
+    //#else 
+
+    //        Application.Quit();
+    //    }
+    public void ExitGame()
     {
-        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(); // 어플리케이션 종료
+#endif
     }
+    
 }

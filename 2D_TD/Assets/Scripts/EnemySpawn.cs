@@ -68,8 +68,7 @@ public class EnemySpawn : MonoBehaviour
     }
     private IEnumerator SpawnEnemy1()
     {
-        yield return new WaitForSeconds(10);
-        //while(Wave < 4)
+
         {
             gameManager.GetComponent<GameManager>().WaveUp();
             for (int i = 0; i < 5; i++)
@@ -128,7 +127,6 @@ public class EnemySpawn : MonoBehaviour
             }
             gameManager.GetComponent<GameManager>().end();
         }
-    }
 
     private IEnumerator SpawnEnemy2()
     {
