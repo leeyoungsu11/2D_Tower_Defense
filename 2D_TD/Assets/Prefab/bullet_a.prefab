@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3d63cf5ac910f46b70df3d2ad41794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 15
+  bulletSpeed: 20
   Attack: 1
   targetEnemy: {fileID: 7435124303868934580, guid: c9aa44f8059af6f4a8d8101c90666f26, type: 3}
   enemy: {fileID: 0}

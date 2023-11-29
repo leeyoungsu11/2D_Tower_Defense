@@ -29,7 +29,7 @@ public class ChangeScene : MonoBehaviour
     }
     public void Gostage1_3()
     {
-        SceneManager.LoadScene(4);
+        LoadingSceneController.LoadScene(4);
     }
     public void BackMainScene()
     {
