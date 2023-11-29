@@ -112,7 +112,10 @@ public class GameManager : MonoBehaviour
     {
         this.Gold -= val;
     }
-
+    public void UpGold(int val)
+    {
+        this.Gold += val;
+    }
     public void end()
     {
         isend = true;

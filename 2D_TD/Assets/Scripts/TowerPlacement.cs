@@ -40,7 +40,7 @@ public class TowerPlacement : MonoBehaviour
                         choiceTowerPrefab = hit.collider.gameObject;
                         Vector3 towerVec = choiceTowerPrefab.transform.position;
                         CreateNewTower(towerVec);
-                        game.GetComponent<GameManager>().SetGold(2); // 타워 구매 후 돈 차감
+                        game.GetComponent<GameManager>().SetGold(200); // 타워 구매 후 돈 차감
                         hit.collider.gameObject.SetActive(false);
                     }
                     else
@@ -50,12 +50,11 @@ public class TowerPlacement : MonoBehaviour
                 }
                 else if (hit.collider.CompareTag("Unit"))
                 {
-                    if(money >= 150)
+                    if(money >= 300)
                     {
                         choiceUnit = hit.collider.gameObject.GetComponent<UnitSet>();
                         choiceUnit.GetComponent<UnitSet>().Upgrade();
-                        game.GetComponent<GameManager>().SetGold(150);
-
+                        game.GetComponent<GameManager>().SetGold(300);
                     }
                     else
                     {

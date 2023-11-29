@@ -4223,7 +4223,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 150G
+  m_Text: 300G
 --- !u!222 &758857848
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6522,8 +6522,7 @@ MonoBehaviour:
   - {fileID: 772665777}
   TowerSet: {fileID: 5104288372448602103, guid: 611518161c7612040a860db446493833, type: 3}
   UnitSet: {fileID: 531091391726971030, guid: bc11fa747daa73248a886c64a3b9c1ae, type: 3}
-  button: {fileID: 0}
-  canvas: {fileID: 0}
+  Tower_Up: {fileID: 0}
 --- !u!4 &1442794615
 Transform:
   m_ObjectHideFlags: 0

@@ -12,8 +12,8 @@ public class Enemy : MonoBehaviour
     private MoveEnemy moveEnemy;
     GameObject gameManager;
     Animator animator;
+    private float HP = 100f; // 체력
 
-    
     /*
     셋업 함수
     스포너에서 enemy프리팹 생성후 이함수를 호출
@@ -22,8 +22,8 @@ public class Enemy : MonoBehaviour
     enemy의 wayPoints에 들어온 wayPoints를 넣어준다.
     */
 
-   
-    public void Setup(Transform[] wayPoints)
+
+    public void Setup(Transform[] wayPoints, int _hp)
     {
         moveEnemy = GetComponent<MoveEnemy>();
         animator = GetComponent<Animator>();
@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
         wayPointCount = wayPoints.Length;
         this.wayPoints = new Transform[wayPointCount];
         this.wayPoints = wayPoints;
-
+        this.HP = _hp;
         transform.position = wayPoints[currentIndex].position;
 
         StartCoroutine(EMove());
@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour
     }
 
     //====================================따로 추가한 것===================
-    public float HP = 100f; // 체력
+    
     // 데미지를 받는 함수
     public void TakeDamage(float damageAmount)
     {
@@ -117,7 +117,8 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
-        
+        gameManager = GameObject.Find("GameManager");
+        gameManager.GetComponent<GameManager>().UpGold(50);
         Destroy(gameObject);
         //gameObject.SetActive(false);
     }

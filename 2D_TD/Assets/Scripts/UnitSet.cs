@@ -36,7 +36,7 @@ public class UnitSet : MonoBehaviour
     public void Upgrade()
     {
         sprite.color = Color.red;
-        ShotSpeed = 0.2f;
+        ShotSpeed = 0.5f;
         ShotRange = 4;
     }
 
