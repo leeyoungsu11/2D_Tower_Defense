@@ -27,7 +27,6 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-
     public void Clear(int stage)
     {
         int val = stage - 1;

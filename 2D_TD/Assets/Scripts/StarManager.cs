@@ -18,6 +18,8 @@ public class StarManager : MonoBehaviour
 
     private void Start()
     {
+        //Debug.Log(LevelManager.Instance.Level);
+
         for (int i = 0; i < stars.Length; i++)
         {
             if (LevelManager.Instance.Level > i)

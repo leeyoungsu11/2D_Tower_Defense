@@ -120,13 +120,9 @@ public class GameManager : MonoBehaviour
     }
     public void OnNextButtonClicked()
     {
-        
-        LoadingSceneController.LoadScene(1);
         Scene scene = SceneManager.GetActiveScene();
-        if (scene.buildIndex == 2)
-        {
-            levelManager.GetComponent<LevelManager>().Clear(2);
-        }
+        LevelManager.Instance.Clear(scene.buildIndex);
+        LoadingSceneController.LoadScene(1);
     }
 
 }
