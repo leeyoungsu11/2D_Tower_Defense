@@ -30,34 +30,33 @@ public class StarManager : MonoBehaviour
         stars[0].gameObject.SetActive(false);
         stars[1].gameObject.SetActive(false);
         stars[2].gameObject.SetActive(false);
-    }
-    private void Update()
-    {
         
     }
+    
     // 넥스트 버튼을 눌렀을 때 클리어 상태 확인 및 별 활성화
-    //public void OnNextButtonClicked()
-    //{
-    //    //// 넥스트 버튼을 눌렀을 때만 1번 씬에서 클리어 표시로써 별을 활성화
-    //    //if (/*SceneManager.GetActiveScene().buildIndex == 1*/)
-    //    //{
-    //    //    stars[0].gameObject.SetActive(true);
+    public void OnNextButtonClicked()
+    {
 
-    //    //    LoadingSceneController.LoadScene(1);
-    //    //}
-    //    SceneManager.GetSceneByBuildIndex(1);
-    //    LoadingSceneController.LoadScene(1);
-    //    stars[0].gameObject.SetActive(true);
+        //// 넥스트 버튼을 눌렀을 때만 1번 씬에서 클리어 표시로써 별을 활성화
+        //if (/*SceneManager.GetActiveScene().buildIndex == 1*/)
+        //{
+        //    stars[0].gameObject.SetActive(true);
+
+        //    LoadingSceneController.LoadScene(1);
+        //}
+        SceneManager.GetSceneByBuildIndex(1);
+        LoadingSceneController.LoadScene(1);
+        stars[0].gameObject.SetActive(true);
 
 
-    //}
-    //public void Onpointerup(PointerEventData eventData)
-    //{
-    //    SceneManager.GetSceneByBuildIndex(1);
-    //    LoadingSceneController.LoadScene(1);
-    //    stars[0] .gameObject.SetActive(true);
-    //}
-    
+        //}
+        //public void Onpointerup(PointerEventData eventData)
+        //{
+        //    SceneManager.GetSceneByBuildIndex(1);
+        //    LoadingSceneController.LoadScene(1);
+        //    stars[0] .gameObject.SetActive(true);
+        //}
 
-    
+
+    }
 }
